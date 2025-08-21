@@ -65,6 +65,8 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         
         .listing-item:hover {
@@ -75,6 +77,10 @@
             padding: 25px;
             text-align: center;
             color: white;
+            height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .rolex-header {
@@ -110,6 +116,9 @@
         
         .item-content {
             padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
         
         .photo-section {
@@ -211,6 +220,7 @@
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 20px;
+            margin-top: auto;
             text-align: center;
         }
         
@@ -300,16 +310,59 @@
                 padding: 20px;
             }
         }
+        
+        /* Lightbox CSS */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .lightbox-close:hover {
+            opacity: 0.7;
+        }
+        
+        .photo-clickable {
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        
+        .photo-clickable:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
     <div class="page-header">
-        <h1>Premium Watches & Guitars For Sale</h1>
-        <p>Quality timepieces and instruments from a private collection</p>
-    </div>
-    
-    <div class="global-offer">
-        🎸 SPECIAL COMBO DEAL: Buy any watch and get 20% OFF any guitar! 🎸
+        <h1>Watches for Sale</h1>
+        <p>mark.savage@vu.com</p>
     </div>
     
     <div class="listings-container">
@@ -324,18 +377,15 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder rolex-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/submariner.jpg" alt="Rolex Submariner No Date" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/submariner.jpg', 'Rolex Submariner No Date')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder rolex-placeholder">
-                                ROLEX SUBMARINER<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/submariner-offiicial.png" alt="Rolex Submariner Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/submariner-offiicial.png', 'Rolex Submariner Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>The Crown Jewel of Dive Watches</h3>
@@ -369,7 +419,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -384,23 +434,21 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder omega-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/moonwatch.jpg" alt="Omega Speedmaster Moonwatch" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/moonwatch.jpg', 'Omega Speedmaster Moonwatch')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder omega-placeholder">
-                                OMEGA SPEEDMASTER<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/moonwatch-official.png" alt="Omega Speedmaster Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/moonwatch-official.png', 'Omega Speedmaster Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>The Moon Landing Legend</h3>
                         <p>This legendary <strong>Omega Speedmaster Professional Moonwatch</strong> (Ref. 311.33.42.30.01.002) is the only watch that has been part of all six NASA moon landings and remains the only timepiece certified by NASA for all manned space missions.</p>
                         <p>This sapphire crystal version features a <strong>scratch-resistant sapphire front crystal</strong> and a stunning <strong>exhibition display caseback</strong> that showcases the beautiful manual-wind Caliber 1863 movement. The enhanced visibility and transparency make this the perfect choice for collectors who want to appreciate both the heritage and the mechanical artistry.</p>
+                        <p><strong>Yes, it does come with the bracelet (which I special ordered from Omega) and all of the original packaging which includes a large display box, jewelers loop, Speedmaster paperweight, and commemorative photo booklet of the Moonwatch in use for the first moon landings.</strong></p>
                     </div>
                     
                     <div class="key-specs">
@@ -429,7 +477,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -444,23 +492,21 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder tudor-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/pelagos.jpg" alt="Tudor Pelagos" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/pelagos.jpg', 'Tudor Pelagos')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder tudor-placeholder">
-                                TUDOR PELAGOS<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/pelagos-official.png" alt="Tudor Pelagos Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/pelagos-official.png', 'Tudor Pelagos Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>The Professional's Choice</h3>
                         <p>The <strong>Tudor Pelagos</strong> is a no-compromise professional dive watch, engineered for those who demand the ultimate in underwater performance and everyday wearability.</p>
                         <p>Crafted from lightweight <strong>Grade 2 titanium</strong> with 500m water resistance, this watch features Tudor's innovative <strong>self-adjusting bracelet system</strong> and brilliant blue luminescence. The matte finish and technical design make it the perfect tool watch for professionals and enthusiasts alike.</p>
+                        <p><strong>Yes, it does come with the bracelet.</strong></p>
                     </div>
                     
                     <div class="key-specs">
@@ -489,7 +535,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -504,18 +550,15 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder grandseiko-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/shunbun.jpg" alt="Grand Seiko Shunbun" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/shunbun.jpg', 'Grand Seiko Shunbun')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder grandseiko-placeholder">
-                                GRAND SEIKO SHUNBUN<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/shunbun-official.png" alt="Grand Seiko Shunbun Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/shunbun-official.png', 'Grand Seiko Shunbun Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>Poetry in Timekeeping</h3>
@@ -549,7 +592,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -564,18 +607,15 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder rolex-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/datejust.jpg" alt="Rolex Datejust 36" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/datejust.jpg', 'Rolex Datejust 36')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder rolex-placeholder">
-                                ROLEX DATEJUST<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/datejust-official.png" alt="Rolex Datejust Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/datejust-official.png', 'Rolex Datejust Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>Timeless Elegance</h3>
@@ -609,7 +649,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -624,18 +664,15 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder tudor-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/heritage-black-bay.jpg" alt="Tudor Heritage Black Bay" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/heritage-black-bay.jpg', 'Tudor Heritage Black Bay')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder tudor-placeholder">
-                                TUDOR HERITAGE BLACK BAY<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/heritage-black-bay-official.png" alt="Tudor Heritage Black Bay Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/heritage-black-bay-official.png', 'Tudor Heritage Black Bay Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>The Steel Bezel Heritage</h3>
@@ -669,7 +706,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -684,18 +721,15 @@
                 <div class="item-content">
                     <div class="photo-section">
                         <div class="photo-container">
-                            <div class="photo-placeholder tudor-placeholder">
-                                YOUR PHOTO HERE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/black-bay-58.jpg" alt="Tudor Black Bay 58 Blue" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/black-bay-58.jpg', 'Tudor Black Bay 58 Blue')">
                             <div class="photo-label">My Photo</div>
                         </div>
                         <div class="photo-container">
-                            <div class="photo-placeholder tudor-placeholder">
-                                TUDOR BLACK BAY 58<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
-                            </div>
+                            <img src="images/black-bay-58-official.png" alt="Tudor Black Bay 58 Official" class="photo-clickable" style="width: 100%; height: 180px; object-fit: cover;" onclick="openLightbox('images/black-bay-58-official.png', 'Tudor Black Bay 58 Official')">
                             <div class="photo-label">Official Product Image</div>
                         </div>
                     </div>
+                    <div style="text-align: center; color: #666; font-size: 0.9em; margin-bottom: 15px;">Click an image to see larger</div>
                     
                     <div class="description">
                         <h3>The Goldilocks Diver</h3>
@@ -729,7 +763,7 @@
                     </div>
                     
                     <div class="contact-section">
-                        <a href="#contact" class="contact-btn">Contact Me</a>
+                        <a href="mailto:mark.savage@vu.com" class="contact-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -740,7 +774,51 @@
         <h3>Interested in Any of These Pieces?</h3>
         <p>All watches are from my private collection and come with full documentation.<br>
         Don't forget - buy any watch and save 20% on guitars!</p>
-        <a href="#contact" class="contact-btn">Get In Touch</a>
+        <a href="mailto:mark.savage@vu.com" class="contact-btn">Get In Touch</a>
     </div>
+    
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-overlay">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+    
+    <script>
+        function openLightbox(imgSrc, altText) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imgSrc;
+            lightboxImg.alt = altText;
+            lightbox.style.display = 'flex';
+            
+            // Prevent body scrolling when lightbox is open
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            
+            // Restore body scrolling
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close lightbox when clicking on overlay or close button
+        document.getElementById('lightbox').addEventListener('click', closeLightbox);
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        
+        // Prevent closing when clicking on the image itself
+        document.getElementById('lightbox-img').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
