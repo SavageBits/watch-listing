@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watches & Guitars For Sale - Company Classifieds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .global-offer {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .listings-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .listing-item {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .listing-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .item-header {
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+        
+        .rolex-header {
+            background: linear-gradient(135deg, #1a1a1a, #333);
+        }
+        
+        .omega-header {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+        }
+        
+        .tudor-header {
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+        }
+        
+        .grandseiko-header {
+            background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
+        }
+        
+        .item-header h2 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+        }
+        
+        .item-header .subtitle {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .grandseiko-header h2,
+        .grandseiko-header .subtitle {
+            color: #333;
+        }
+        
+        .item-content {
+            padding: 25px;
+        }
+        
+        .photo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .photo-container {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #1a1a1a, #333);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .rolex-placeholder {
+            color: #d4af37;
+        }
+        
+        .omega-placeholder {
+            color: #d32f2f;
+        }
+        
+        .tudor-placeholder {
+            color: #DC143C;
+        }
+        
+        .grandseiko-placeholder {
+            color: #FFB6C1;
+        }
+        
+        .photo-label {
+            padding: 8px;
+            background-color: #f8f9fa;
+            font-weight: bold;
+            font-size: 0.8em;
+            text-align: center;
+            border-top: 1px solid #ddd;
+        }
+        
+        .description {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .description h3 {
+            color: #1a1a1a;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+        }
+        
+        .description p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .key-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .spec-item {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        
+        .spec-label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .spec-value {
+            color: #333;
+        }
+        
+        .pricing-section {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .msrp {
+            font-size: 1em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+        
+        .price {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .includes {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        .contact-section {
+            text-align: center;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            background-color: #219a52;
+        }
+        
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .footer h3 {
+            margin-bottom: 15px;
+        }
+        
+        .footer p {
+            margin-bottom: 20px;
+        }
+        
+        .footer .contact-btn {
+            background-color: #e74c3c;
+        }
+        
+        .footer .contact-btn:hover {
+            background-color: #c0392b;
+        }
+        
+        @media (max-width: 1024px) {
+            .listings-grid {
+                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                gap: 25px;
+            }
+            
+            .page-header h1 {
+                font-size: 2em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .photo-section,
+            .key-specs {
+                grid-template-columns: 1fr;
+            }
+            
+            .photo-placeholder {
+                height: 150px;
+            }
+            
+            .item-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>Premium Watches & Guitars For Sale</h1>
+        <p>Quality timepieces and instruments from a private collection</p>
+    </div>
+    
+    <div class="global-offer">
+        🎸 SPECIAL COMBO DEAL: Buy any watch and get 20% OFF any guitar! 🎸
+    </div>
+    
+    <div class="listings-container">
+        <div class="listings-grid">
+            <!-- ROLEX SUBMARINER -->
+            <div class="listing-item">
+                <div class="item-header rolex-header">
+                    <h2>Rolex Submariner (No Date)</h2>
+                    <div class="subtitle">Reference 124060 - The Iconic Dive Watch</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder rolex-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder rolex-placeholder">
+                                ROLEX SUBMARINER<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>The Crown Jewel of Dive Watches</h3>
+                        <p>This legendary <strong>Rolex Submariner No Date</strong> set the standard for dive watches and remains one of the most recognizable timepieces in the world.</p>
+                        <p>Featuring a 41mm Oystersteel case with virtually scratchproof <strong>black Cerachrom ceramic bezel</strong>, this watch delivers both underwater reliability and everyday elegance. The clean black dial offers that classic, symmetrical look collectors love.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">41mm Oystersteel</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">Caliber 3230</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Water Resistance:</div>
+                            <div class="spec-value">300m (1000ft)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Power Reserve:</div>
+                            <div class="spec-value">~70 hours</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">MSRP: $9,500</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Full Set</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- OMEGA MOONWATCH -->
+            <div class="listing-item">
+                <div class="item-header omega-header">
+                    <h2>Omega Speedmaster Moonwatch</h2>
+                    <div class="subtitle">Reference 311.33.42.30.01.002 - Sapphire Crystal with Display Back</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder omega-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder omega-placeholder">
+                                OMEGA SPEEDMASTER<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>The Moon Landing Legend</h3>
+                        <p>This legendary <strong>Omega Speedmaster Professional Moonwatch</strong> (Ref. 311.33.42.30.01.002) is the only watch that has been part of all six NASA moon landings and remains the only timepiece certified by NASA for all manned space missions.</p>
+                        <p>This sapphire crystal version features a <strong>scratch-resistant sapphire front crystal</strong> and a stunning <strong>exhibition display caseback</strong> that showcases the beautiful manual-wind Caliber 1863 movement. The enhanced visibility and transparency make this the perfect choice for collectors who want to appreciate both the heritage and the mechanical artistry.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">42mm Stainless Steel</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">Caliber 1863</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Crystal:</div>
+                            <div class="spec-value">Sapphire (Front & Back)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Power Reserve:</div>
+                            <div class="spec-value">48 hours</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">MSRP: $6,950</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Full Set</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TUDOR PELAGOS -->
+            <div class="listing-item">
+                <div class="item-header tudor-header">
+                    <h2>Tudor Pelagos</h2>
+                    <div class="subtitle">Reference 25600TN - Professional Titanium Dive Watch</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder tudor-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder tudor-placeholder">
+                                TUDOR PELAGOS<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>The Professional's Choice</h3>
+                        <p>The <strong>Tudor Pelagos</strong> is a no-compromise professional dive watch, engineered for those who demand the ultimate in underwater performance and everyday wearability.</p>
+                        <p>Crafted from lightweight <strong>Grade 2 titanium</strong> with 500m water resistance, this watch features Tudor's innovative <strong>self-adjusting bracelet system</strong> and brilliant blue luminescence. The matte finish and technical design make it the perfect tool watch for professionals and enthusiasts alike.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">42mm Titanium</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">Caliber MT5612</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Water Resistance:</div>
+                            <div class="spec-value">500m (1640ft)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Material:</div>
+                            <div class="spec-value">Grade 2 Titanium</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">MSRP: $5,200</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Rubber Strap</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GRAND SEIKO SHUNBUN -->
+            <div class="listing-item">
+                <div class="item-header grandseiko-header">
+                    <h2>Grand Seiko 'Shunbun'</h2>
+                    <div class="subtitle">Reference SBGA413G - Spring Cherry Blossom - Four Seasons Collection</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder grandseiko-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder grandseiko-placeholder">
+                                GRAND SEIKO SHUNBUN<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>Poetry in Timekeeping</h3>
+                        <p>The <strong>Grand Seiko SBGA413G 'Shunbun'</strong> captures the ephemeral beauty of cherry blossoms floating on water after Japan's spring equinox - a phenomenon called 'Hana-Ikada' or 'flower rafts'.</p>
+                        <p>This masterpiece features a mesmerizing <strong>textured pink dial</strong> that shifts from silver to subtle pink depending on lighting, housed in lightweight <strong>titanium</strong> with Zaratsu polishing. The Spring Drive movement's sweeping seconds hand reflects the continuous flow of time itself.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">40mm Titanium</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">9R65 Spring Drive</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Power Reserve:</div>
+                            <div class="spec-value">72 hours</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Accuracy:</div>
+                            <div class="spec-value">±1 second/day</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">MSRP: $6,600</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Titanium Bracelet</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ROLEX DATEJUST 36 -->
+            <div class="listing-item">
+                <div class="item-header rolex-header">
+                    <h2>Rolex Datejust 36</h2>
+                    <div class="subtitle">Reference 126200 - The Quintessential Rolex</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder rolex-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder rolex-placeholder">
+                                ROLEX DATEJUST<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>Timeless Elegance</h3>
+                        <p>The <strong>Rolex Datejust 36</strong> represents the quintessential dress watch - the archetype of timeless style that has remained virtually unchanged since its 1945 debut.</p>
+                        <p>This current-generation model features the reliable <strong>Caliber 3235 movement</strong> with 70-hour power reserve, housed in a perfectly proportioned 36mm Oystersteel case. Available in multiple dial colors, it's the versatile choice that works equally well in the boardroom or at dinner.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">36mm Oystersteel</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">Caliber 3235</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Power Reserve:</div>
+                            <div class="spec-value">70 hours</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Water Resistance:</div>
+                            <div class="spec-value">100m (330ft)</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">MSRP: $7,550</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Full Set</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TUDOR HERITAGE BLACK BAY -->
+            <div class="listing-item">
+                <div class="item-header tudor-header">
+                    <h2>Tudor Heritage Black Bay</h2>
+                    <div class="subtitle">Reference 79730 - Steel Bezel Classic</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder tudor-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder tudor-placeholder">
+                                TUDOR HERITAGE BLACK BAY<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>The Steel Bezel Heritage</h3>
+                        <p>The <strong>Tudor Heritage Black Bay</strong> (Ref. 79730) offers a clean, understated take on Tudor's celebrated dive watch design with its distinctive <strong>stainless steel bezel</strong>.</p>
+                        <p>Featuring the classic "snowflake" hands and matte black dial, this 41mm diver delivers a more subtle aesthetic than its colored bezel siblings. The all-steel construction creates a cohesive, professional look that works equally well as a tool watch or everyday timepiece. This variant represents Tudor's versatile approach to vintage-inspired design.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">41mm Stainless Steel</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">ETA 2824-2</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Water Resistance:</div>
+                            <div class="spec-value">200m (660ft)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Bezel:</div>
+                            <div class="spec-value">Stainless Steel</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">Original MSRP: $3,775 (Discontinued)</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Steel Bracelet</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TUDOR BLACK BAY 58 BLUE -->
+            <div class="listing-item">
+                <div class="item-header tudor-header">
+                    <h2>Tudor Black Bay 58 Blue</h2>
+                    <div class="subtitle">Reference 79030B - The Perfect Dive Watch</div>
+                </div>
+                
+                <div class="item-content">
+                    <div class="photo-section">
+                        <div class="photo-container">
+                            <div class="photo-placeholder tudor-placeholder">
+                                YOUR PHOTO HERE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">My Photo</div>
+                        </div>
+                        <div class="photo-container">
+                            <div class="photo-placeholder tudor-placeholder">
+                                TUDOR BLACK BAY 58<br>OFFICIAL PRODUCT IMAGE<br>(Replace with actual image)
+                            </div>
+                            <div class="photo-label">Official Product Image</div>
+                        </div>
+                    </div>
+                    
+                    <div class="description">
+                        <h3>The Goldilocks Diver</h3>
+                        <p>The <strong>Tudor Black Bay 58 Blue</strong> is widely considered the world's best traditionally-styled dive watch - perfectly sized at 39mm with vintage-inspired design and modern specifications.</p>
+                        <p>Featuring a gorgeous deep blue dial and bezel, this watch is powered by Tudor's in-house <strong>Caliber MT5402</strong> with 70-hour power reserve. The iconic "snowflake" hands and gilt accents give it that perfect retro-meets-modern aesthetic that works everywhere from the ocean to the office.</p>
+                    </div>
+                    
+                    <div class="key-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Case Size:</div>
+                            <div class="spec-value">39mm Stainless Steel</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Movement:</div>
+                            <div class="spec-value">Caliber MT5402</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Water Resistance:</div>
+                            <div class="spec-value">200m (660ft)</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Power Reserve:</div>
+                            <div class="spec-value">70 hours</div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-section">
+                        <div class="msrp">MSRP: $4,300</div>
+                        <div class="price">[Your Asking Price]</div>
+                        <div class="includes">Includes: Box, Papers & Steel Bracelet</div>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <a href="#contact" class="contact-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <h3>Interested in Any of These Pieces?</h3>
+        <p>All watches are from my private collection and come with full documentation.<br>
+        Don't forget - buy any watch and save 20% on guitars!</p>
+        <a href="#contact" class="contact-btn">Get In Touch</a>
+    </div>
+</body>
+</html>
